@@ -1,12 +1,28 @@
 import { Locator, Page } from '@playwright/test'
+import { Input } from '../atoms/Input'
+import { Button } from '../atoms/Button'
+import { BasePage } from './base-page'
 
-export class OrderPage {
-  readonly page: Page
-  readonly statusButton: Locator
-  // add more locators here
+export class OrderPage extends BasePage{
+  readonly statusButton: Button
+  readonly nameField: Input
+  readonly phoneField: Input
+  readonly commentField: Input
+  readonly statusModal: Locator
+  readonly orderNumberField: Input
+  readonly trackButton: Button
+  readonly createOrder: Button
 
   constructor(page: Page) {
-    this.page = page
-    this.statusButton = page.getByTestId('openStatusPopup-button')
+    super(page)
+    this.statusButton = new Button(page, '[data-name="openStatusPopup-button"]')
+    this.nameField = new Input(page, '#name')
+    this.phoneField = new Input(page, '#phone')
+    this.commentField = new Input(page, '#comment')
+    this.statusModal = page.locator('searchOrder-popup')
+    this.orderNumberField = new Input(page, '[data-name="searchOrder-input"]')
+    this.trackButton = new Button(page, '[data-name="searchOrder-popup"] button.order-search-popup__button')
+    this.createOrder = new Button(page, '[data-name="createOrder-button"]')
+
   }
 }
