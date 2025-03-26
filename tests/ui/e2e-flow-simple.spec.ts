@@ -1,9 +1,8 @@
-import { test, expect } from '@playwright/test'
+import { test } from '@playwright/test'
 import { LoginPage } from '../pages/login-page'
 import { faker } from '@faker-js/faker/locale/ar'
 import { PASSWORD, USERNAME } from '../../config/env-data'
 import { OrderNotFoundPage } from '../pages/order-not-found'
-
 
 test('signIn button disabled when incorrect data inserted', async ({ page }) => {
   const loginPage = new LoginPage(page)
@@ -21,7 +20,6 @@ test('login with correct credentials and verify order creation page', async ({ p
   await orderCreationPage.nameField.checkVisible()
   await orderCreationPage.phoneField.checkVisible()
 })
-
 
 test('TL-18-1 Check footer on login page', async ({ page }) => {
   const loginPage = new LoginPage(page)
@@ -46,13 +44,11 @@ test('TL-18-2 Check footer on order page', async ({ page }) => {
 
 test('TL-18-3 Check footer on order not found page', async ({ page }) => {
   const loginPage = new LoginPage(page)
-  const notFoundPage = new OrderNotFoundPage(page);
+  const notFoundPage = new OrderNotFoundPage(page)
   await loginPage.open()
   const orderPage = await loginPage.signIn(USERNAME, PASSWORD)
   await orderPage.statusButton.click()
   await orderPage.orderNumberField.fill('0')
   await orderPage.trackButton.click()
   await notFoundPage.checkNotFoundTitle()
-
-
 })

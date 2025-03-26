@@ -3,7 +3,7 @@ import { Input } from '../atoms/Input'
 import { Button } from '../atoms/Button'
 import { BasePage } from './base-page'
 
-export class OrderPage extends BasePage{
+export class OrderPage extends BasePage {
   readonly statusButton: Button
   readonly nameField: Input
   readonly phoneField: Input
@@ -21,8 +21,10 @@ export class OrderPage extends BasePage{
     this.commentField = new Input(page, '#comment')
     this.statusModal = page.locator('searchOrder-popup')
     this.orderNumberField = new Input(page, '[data-name="searchOrder-input"]')
-    this.trackButton = new Button(page, '[data-name="searchOrder-popup"] button.order-search-popup__button')
+    this.trackButton = new Button(
+      page,
+      '[data-name="searchOrder-popup"] button.order-search-popup__button',
+    )
     this.createOrder = new Button(page, '[data-name="createOrder-button"]')
-
   }
 }

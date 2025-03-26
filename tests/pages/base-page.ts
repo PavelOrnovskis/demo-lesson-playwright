@@ -1,7 +1,7 @@
 import { Locator, Page } from '@playwright/test'
 import { Button } from '../atoms/Button'
 import { Link } from '../atoms/Link'
-import {expect} from '@playwright/test'
+import { expect } from '@playwright/test'
 
 export class BasePage {
   readonly page: Page
@@ -20,11 +20,9 @@ export class BasePage {
     this.privacyPolicyLink = new Link(this.page, '[href="/pdf/politics.pdf"]')
     this.cookiePolicyLink = new Link(this.page, '[href="/pdf/cookie.pdf"]')
     this.tosLink = new Link(this.page, '[href="/pdf/conditions.pdf"]')
-
   }
 
   async checkFooterAttached(): Promise<void> {
     await expect(this.footer).toBeAttached()
   }
-
 }
